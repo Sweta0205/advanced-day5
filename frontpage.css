@@ -1,0 +1,14 @@
+body{
+    color:brown;
+    background-color:greenyellow
+}
+img{
+    height: 100px;
+    width:100px
+}
+h1{
+    text-align: center;
+}
+h3{
+    display:none;
+}
