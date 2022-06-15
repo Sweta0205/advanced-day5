@@ -57,13 +57,18 @@ async function getMovies(movieCategory) {
       
           <div class='col'> 
           <div class="card" style="width: 18rem;">
+          <a href="./admin.html?movieId=${singleMovie._id}&category=${movieCategory}&description=${singleMovie.description}&imageUrl=${singleMovie.imageUrl}&name=${singleMovie.name}">
+
+
               <img id="img"src="${singleMovie.imageUrl}" class="card-img-top" alt="image not found">
               <div class="card-body">
               <p class="card-text"> ${singleMovie.category} </p>
               <h3 class="card-title" >${singleMovie._id}</h3>
+
+
             <h5 class="card-title" >${singleMovie.name}</h5>
                   <p class="card-text"> ${singleMovie.description} </p>
-
+                  
                  
       
               </div>
@@ -79,10 +84,12 @@ const addClickFunction = (event) => {
     console.log("print" + event)
     let clickedBookTitle = event.target.closest(".card").querySelector("h3").innerHTML
     alert(clickedBookTitle)
-   
+
     console.log(clickedBookTitle)
-    
+
 
     const card1 = event.target.parentElement
     card1.classList.toggle("clicked-card")
 }
+
+
