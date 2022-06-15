@@ -1,53 +1,4 @@
-const addMovies = async (event) => {
-    event.preventDefault();
-
-    try {
-        const data = {
-            name: document.getElementById('name').value,
-            description: document.getElementById('description').value,
-            category: document.getElementById('category').value,
-            imageUrl: document.getElementById('imageUrl').value,
-        };
-        alert(document.getElementById('name').value)
-        const options = {
-            method: 'POST',
-            headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmEyMmM0MWZmNDNiNTAwMTUwYWYwMTciLCJpYXQiOjE2NTQ3OTUzMzAsImV4cCI6MTY1NjAwNDkzMH0.oqnJezsnkJyrjXJoPOn6HGVeA1kn-ZYC_PRnYyeRAqI",
-
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        };
-        const response = await fetch("https://striveschool-api.herokuapp.com/api/movies/", options)
-        const singleProduct = await response.json()
-        console.log(singleProduct)
-
-    }
-    catch (error) {
-        console.error(error);
-    }
-
-
-
-
-
-}
-
-
-
-
-
-const init = {
-    method: 'GET',
-    headers: {
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmEyMmM0MWZmNDNiNTAwMTUwYWYwMTciLCJpYXQiOjE2NTQ3OTUzMzAsImV4cCI6MTY1NjAwNDkzMH0.oqnJezsnkJyrjXJoPOn6HGVeA1kn-ZYC_PRnYyeRAqI",
-
-    }
-
-}
-
-
-window.onload = (event) => {
+window.onload = () => {
     const category = new URLSearchParams(window.location.search).get("category")
     const name = new URLSearchParams(window.location.search).get("name")
     const description = new URLSearchParams(window.location.search).get("description")
@@ -65,9 +16,48 @@ window.onload = (event) => {
 }
 
 
+const addMovies = async () => {
+    try {
+        const data = {
+            name: document.getElementById('name').value,
+            description: document.getElementById('description').value,
+            category: document.getElementById('category').value,
+            imageUrl: document.getElementById('imageUrl').value,
+        };
+        const options = {
+            method: 'POST',
+            headers: {
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmEyMmM0MWZmNDNiNTAwMTUwYWYwMTciLCJpYXQiOjE2NTQ3OTUzMzAsImV4cCI6MTY1NjAwNDkzMH0.oqnJezsnkJyrjXJoPOn6HGVeA1kn-ZYC_PRnYyeRAqI",
+
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        };
+        const response = await fetch("https://striveschool-api.herokuapp.com/api/movies/", options)
+        const singleMovie =  response.json()
+        console.log(singleMovie)
+
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+
+
+
+
+
+
 
 async function getMovies(movieCategory) {
-
+    const init = {
+        method: 'GET',
+        headers: {
+            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmEyMmM0MWZmNDNiNTAwMTUwYWYwMTciLCJpYXQiOjE2NTQ3OTUzMzAsImV4cCI6MTY1NjAwNDkzMH0.oqnJezsnkJyrjXJoPOn6HGVeA1kn-ZYC_PRnYyeRAqI",
+    
+        }
+    
+    }
     const response = await fetch('https://striveschool-api.herokuapp.com/api/movies/' + movieCategory, init)
     const movies = await response.json()
     for (let i = 0; i < movies.length; i++) {
@@ -99,12 +89,8 @@ async function getMovies(movieCategory) {
 
 
 
-async function deleteMovie(event) {
+async function deleteMovie() {
     const movieId = new URLSearchParams(window.location.search).get("movieId")
-    //const category = new URLSearchParams(window.location.search).get("category")
-    // let movieId = event.target.closest(".card").querySelector("h5").innerHTML
-    alert(movieId)
-
     const headersData = {
         method: 'DELETE',
         headers: {
@@ -123,12 +109,8 @@ async function deleteMovie(event) {
 
 
 
-const editOption = async (event) => {
+const editOption = async () => {
     const movieId = new URLSearchParams(window.location.search).get("movieId")
-    //const category = new URLSearchParams(window.location.search).get("category")
-    // let movieId = event.target.closest(".card").querySelector("h5").innerHTML
-    alert(movieId)
-
 
     try {
 
