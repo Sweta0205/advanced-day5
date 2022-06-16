@@ -134,7 +134,7 @@ const editOption = async () => {
 
         const response = await movieEdit.json()
 
-        console.log(response)
+        console.log(response)   
 
 
     } catch (error) {
